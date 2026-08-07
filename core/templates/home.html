@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Report System</title>
+    <style>
+        .report-card{overflow:visible !important;}
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; text-align: center; }
+        .logout { text-align: right; margin-bottom: 10px; }
+        .logout a { color: red; text-decoration: none; font-weight: bold; }
+        form { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        form label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        form input, form select, form textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        form button { margin-top: 15px; padding: 12px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        form button:hover { background: #0056b3; }
+        .filter-buttons { margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .filter-buttons a { padding: 8px 16px; background: #e0e0e0; color: #333; text-decoration: none; border-radius: 20px; font-weight: 500; transition: 0.3s; }
+        .filter-buttons a.active { background: #007bff; color: white; }
+        .report-card { background: #fff; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+        .report-card h3 { margin: 0 0 10px; color: #007bff; }
+        .status { display: inline-block; padding: 4px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; color: white; }
+        .status.Pending { background: #ffc107; color: #333; }
+        .status.Under\ Investigation { background: #17a2b8; }
+        .status.Solved { background: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Crime Reporting System</h1>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+
+        <a href="{% url 'report_crime' %}" class="report-btn">+ Report New Crime</a>
+
+        <div class="filter">
+            <form method="GET">
+                <label for="status">Filter by Status:</label>
+                <select name="status" id="status" onchange="this.form.submit()">
+                    <option value="All" {% if current_status == 'All' %}selected{% endif %}>All</option>
+                    {% for value, label in status_choices %}
+                        <option value="{{ value }}" {% if current_status == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+        {% if reports %}
+            {% for report in reports %}
+            <div class="report-card">
+    <h3>{{ report.crime_type }} - {{ report.location }}</h3>
+    <p><strong>Description:</strong> {{ report.description }}</p>
+    <p><strong>Date:</strong> {{ report.date_reported|date:"d M Y, h:i A" }}</p>
+    <p><strong>Status:</strong> {{ report.status }}</p>
+    
+    {% if report.reported_by == user %}
+        <div style="margin-top:10px;">
+            <a href="{% url 'edit_crime' report.id %}" style="background:orange; color:white; padding:5px 10px; text-decoration:none; border-radius:4px;">Edit</a>
+            <a href="{% url 'delete_crime' report.id %}" style="background:red; color:white; padding:5px 10px; text-decoration:none; border-radius:4px; margin-left:5px;">Delete</a>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime Details - {{ crime.crime_type }}</title>
+    <style>
+        body { margin: 0; font-family: Arial; background: #f4f4f4; }
+        .navbar { background: #007bff; padding: 12px 30px; color: white; }
+        .navbar a { color: white; text-decoration: none; font-weight: bold; }
+        .container { max-width: 800px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .detail-row { margin-bottom: 15px; }
+        .label { font-weight: bold; color: #333; }
+        .status-badge { padding: 6px 12px; border-radius: 15px; color: white; font-weight: bold; }
+        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; color: white; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">← Back to Home</a>
+    </div>
+
+    <div class="container">
+        <h2>{{ crime.crime_type }} - {{ crime.location }}</h2>
+        
+        <div class="detail-row">
+            <span class="label">Status:</span> 
+            <span class="status-badge" style="background:{% if crime.status == 'Pending' %}#000{% elif crime.status == 'Under Investigation' %}#ffc107; color:#000{% else %}#28a745{% endif %}">
+                {{ crime.status }}
+            </span>
+        </div>
+
+        <div class="detail-row"><span class="label">Description:</span> {{ crime.description }}</div>
+        <div class="detail-row"><span class="label">Location:</span> {{ crime.location }}</div>
+        <div class="detail-row"><span class="label">Reported By:</span> {{ crime.reported_by.username }}</div>
+        <div class="detail-row"><span class="label">Date Reported:</span> {{ crime.date_reported|date:"d M Y, h:i A" }}</div>
+        {% if crime.photo %}
+        <p><b>📸 Evidence:</b></p>
+        <img src="{{ crime.photo.url }}" style="max-width:100%; border-radius:8px;">
+        {% endif %}
+        {% if request.user == crime.reported_by or request.user.is_superuser %}
+        <div style="margin-top:20px;">
+            <a href="{% url 'edit_crime' crime.id %}" class="btn" style="background:#007bff;">Edit</a>
+            <a href="{% url 'delete_crime' crime.id %}" class="btn" style="background:#dc3545;" onclick="return confirm('Delete this report?')">Delete</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+

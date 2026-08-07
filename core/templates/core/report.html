@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block title %}Report Crime{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:30px auto; background:white; padding:30px; border-radius:10px;">
+    <h2>Report a New Crime</h2>
+    <form method="post" enctype="multipart/form-data"> <!-- enctype mukkiyam -->
+        {% csrf_token %}
+        
+        {{ form.as_p }} <!-- idhu dhan ellam fields ah kaatum -->
+        <button type="submit" style="background:#28a745; color:white; padding:10px 20px; border:none; border-radius:5px;">Submit Report</button>
+        <a href="{% url 'home' %}" style="margin-left:10px;">Cancel</a>
+    </form>
+</div>
+{% endblock %}
