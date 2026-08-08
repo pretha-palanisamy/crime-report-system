@@ -13,11 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 ALLOWED_HOSTS=['crime-report-system-45pu.onrender.com','onrender.com','localhost','127.0.0.1']
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    ALLOWED_HOSTS = ['*']
+    CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 ]
 
 MIDDLEWARE = [
