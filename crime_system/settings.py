@@ -128,3 +128,6 @@ LOGIN_URL='/login/'
 LOGIN_REDIRECT_URL='/home'
 TEMPLATES[0]['DIRS']=[BASE_DIR/'templates']
 TEMPLATES[0]['APP_DIRS']=True
+CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
