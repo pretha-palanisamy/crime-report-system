@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 ALLOWED_HOSTS=['crime-report-system-45pu.onrender.com','onrender.com','localhost','127.0.0.1']
-SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO','https')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -129,10 +129,7 @@ LOGIN_URL='/login/'
 LOGIN_REDIRECT_URL='/home'
 TEMPLATES[0]['DIRS']=[BASE_DIR/'templates']
 TEMPLATES[0]['APP_DIRS']=True
+
+ALLOWED_HOSTS=[*]
 CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE='Lax'
-SESSION_COOKIE_SAMESITE='Lax'
-CSRF_COOKIE_HTTPONLY=False
-CSRF_USE_SESSIONS=False
+SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO','https')
