@@ -12,11 +12,12 @@
 <body>
     <div class="'login-box">
         <h2>Crime Report System</h2>
-        <form method="post"
-           {% csrf_token %}
-           {{form.as_p}}
-           <button type="submit">Login</button>
-    </form>
+        <form method="POST">
+    {% csrf_token %}  <!-- idha add pannu -->
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit">Login</button>
+</form>
     </div>
 </body>
 </html>
