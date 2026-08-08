@@ -8,9 +8,6 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import views as auth_views
 
-@csrf_exempt
-def my_login(request):
-    return auth_views.LoginView.as_view(template_name='core/login.html')(request)
 @login_required
 def home(request):
     status_filter = request.GET.get('status', 'All') 
