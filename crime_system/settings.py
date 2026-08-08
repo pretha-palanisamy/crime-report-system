@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 DEBUG=False
-SECRET_KEY=os.environ.get('SECRET_KEY','django-insecure-fallback-key')
+SECRET_KEY=os.environ.get('SECRET_KEY','django-insecure-default-key')
 
 ALLOWED_HOSTS=['crime-report-system-45pu.onrender.com','.onrender.com','localhost','127.0.0.1']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
