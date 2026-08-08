@@ -130,6 +130,6 @@ LOGIN_REDIRECT_URL='/home'
 TEMPLATES[0]['DIRS']=[BASE_DIR/'templates']
 TEMPLATES[0]['APP_DIRS']=True
 
-ALLOWED_HOSTS=[*]
+ALLOWED_HOSTS=['*']
 CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
 SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO','https')
