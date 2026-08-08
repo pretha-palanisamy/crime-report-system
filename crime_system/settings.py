@@ -131,3 +131,4 @@ TEMPLATES[0]['APP_DIRS']=True
 CSRF_TRUSTED_ORIGINS = ['https://crime-report-system-45pu.onrender.com']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE='Lax'
