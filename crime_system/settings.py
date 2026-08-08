@@ -12,10 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-DEBUG=False
-SECRET_KEY=os.environ.get('SECRET_KEY','django-insecure-default-key')
-
-ALLOWED_HOSTS=['crime-report-system-45pu.onrender.com','.onrender.com','localhost','127.0.0.1']
+ALLOWED_HOSTS=['crime-report-system-45pu.onrender.com','onrender.com','localhost','127.0.0.1']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u-%#tcjb6do8$r&9$rqgvld2lcf^4w3otw3fh)9)e0-eyx9=!9'
+SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-fallback-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
